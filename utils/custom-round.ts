@@ -6,8 +6,5 @@
 export const customRound = (n: number) => {
   const rounded = Math.floor(n * 100);
   const mod = rounded % 5;
-  if (mod !== 0) {
-    return (rounded + (5 - mod)) / 100;
-  }
-  return rounded / 100;
+  return mod === 0 ? rounded / 100 : (rounded + (5 - mod)) / 100;
 };
