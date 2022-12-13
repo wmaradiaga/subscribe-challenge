@@ -40,4 +40,16 @@ describe('generateReceipt', () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  it('should throw if the input is empty', () => {
+    expect(() => generateReceipt('')).toThrowError(
+      'The shopping basket is empty.'
+    );
+  });
+
+  it('should throw if shopping basket structure is not valid', () => {
+    const content = 'book without quantity and price';
+
+    expect(() => generateReceipt(content)).toThrow();
+  });
 });

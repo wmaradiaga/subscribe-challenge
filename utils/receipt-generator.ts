@@ -6,6 +6,7 @@ import { taxesCalculator } from './taxes-calculator';
  * @returns string of the receipt following the specified format.
  */
 export const generateReceipt = (shoppingBasket: string) => {
+  if (!shoppingBasket) throw new Error('The shopping basket is empty.');
   // First I will split the string into an array of lines to get the items.
   let output = '';
   const items = shoppingBasket.split('\n');
@@ -15,6 +16,8 @@ export const generateReceipt = (shoppingBasket: string) => {
       const fragments = item.split(' ');
       const quantity = parseInt(fragments.shift() || '0');
       const price = parseFloat(fragments.pop() || '0');
+      if (isNaN(quantity) || isNaN(price))
+        throw new Error('The shopping basket structure is not valid.');
       const description = fragments.join(' ').replace(' at', ':');
       const itemTotal = quantity * price;
       const itemTaxes = taxesCalculator(quantity * price, description);
