@@ -1,7 +1,7 @@
-import { generateReceipt } from './index';
+import { generateReceipt } from '../receipt-generator';
 import { readFileSync } from 'fs';
 
-describe('index', () => {
+describe('generateReceipt', () => {
   it('should calculate the taxes properly for input 1', () => {
     const content = readFileSync('./sample-data/input1.txt', {
       encoding: 'ascii',
