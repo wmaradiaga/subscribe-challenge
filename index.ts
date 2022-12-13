@@ -1,4 +1,5 @@
 import { Book, Food, MedicalProducts } from './categories';
+import { readFileSync } from 'fs';
 
 /**
  * Returns the rounded number to the nearest 0.05.
@@ -34,7 +35,7 @@ const calculateTaxes = (total: number, description: string) => {
   return customRound(basicTaxes + importationTaxes);
 };
 
-const index = (shoppingBasket: string) => {
+export const generateReceipt = (shoppingBasket: string) => {
   // First I will split the string into an array of lines to get the items.
   let output = '';
   const items = shoppingBasket.split('\n');
@@ -62,5 +63,15 @@ const index = (shoppingBasket: string) => {
   output += `Total: ${total.toFixed(2)}`;
   return output;
 };
+
+const index = () => {
+  const url = process.argv.slice(2)[0];
+  const content = readFileSync(url, {
+    encoding: 'ascii',
+  });
+  return generateReceipt(content);
+};
+
+console.log(index());
 
 export default index;

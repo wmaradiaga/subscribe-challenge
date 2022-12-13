@@ -1,4 +1,4 @@
-import index from './index';
+import { generateReceipt } from './index';
 import { readFileSync } from 'fs';
 
 describe('index', () => {
@@ -10,7 +10,7 @@ describe('index', () => {
       encoding: 'ascii',
     });
 
-    const result = index(content);
+    const result = generateReceipt(content);
 
     expect(result).toEqual(expectedResult);
   });
@@ -23,7 +23,7 @@ describe('index', () => {
       encoding: 'ascii',
     });
 
-    const result = index(content);
+    const result = generateReceipt(content);
 
     expect(result).toEqual(expectedResult);
   });
@@ -36,7 +36,7 @@ describe('index', () => {
       encoding: 'ascii',
     });
 
-    const result = index(content);
+    const result = generateReceipt(content);
 
     expect(result).toEqual(expectedResult);
   });
