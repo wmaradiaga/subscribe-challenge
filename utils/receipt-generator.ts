@@ -20,7 +20,7 @@ export const generateReceipt = (shoppingBasket: string) => {
         throw new Error('The shopping basket structure is not valid.');
       const description = fragments.join(' ').replace(' at', ':');
       const itemTotal = quantity * price;
-      const itemTaxes = taxesCalculator(quantity * price, description);
+      const itemTaxes = taxesCalculator(price, quantity, description);
 
       output += `${quantity} ${description} ${(itemTaxes + itemTotal).toFixed(
         2
